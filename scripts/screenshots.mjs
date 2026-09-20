@@ -112,6 +112,41 @@ try {
     </div>`);
   await board.locator('.shot').last().evaluate((img) => img.decode());
   await board.locator('body').screenshot({ path: join(images, 'before-after.png') });
+
+  // 6. 16:9 card for social posts and the repository's social preview. Timelines shrink images
+  //    a lot, so it relies on a large headline and on shapes rather than on readable UI text.
+  const logo = `data:image/svg+xml;base64,${readFileSync(join(root, 'static/logo.svg')).toString('base64')}`;
+  const card = await plain.newPage({ viewport: { width: 1600, height: 900 }, deviceScaleFactor: 1.5 });
+  await card.setContent(`
+    <style>
+      body { margin: 0; width: 1600px; height: 900px; overflow: hidden; position: relative;
+        background: linear-gradient(160deg, #fff7ec 0%, #eef1f5 60%);
+        font-family: -apple-system, 'Segoe UI', 'Noto Sans', sans-serif; color: #1f2328; }
+      header { position: absolute; left: 72px; top: 56px; right: 72px; display: flex; align-items: center; gap: 28px; }
+      header img { width: 112px; height: 112px; }
+      h1 { margin: 0; font-size: 53px; line-height: 1.1; letter-spacing: -0.02em; white-space: nowrap; }
+      p { margin: 12px 0 0; font-size: 29px; color: #57606a; white-space: nowrap; }
+      .shot { position: absolute; border-radius: 14px; border: 1px solid #d0d7de; background: #fff;
+        box-shadow: 0 18px 50px rgb(31 35 40 / 18%); overflow: hidden; }
+      .shot img { display: block; width: 100%; }
+      .before { left: 72px; top: 330px; width: 470px; height: 500px; transform: rotate(-2deg); }
+      .before img { width: 760px; }
+      .after { left: 500px; top: 262px; width: 1180px; height: 740px; }
+      .tag { position: absolute; z-index: 2; padding: 8px 18px; border-radius: 999px; font-size: 24px; font-weight: 600; color: #fff; }
+      .tag.b { left: 96px; top: 806px; background: #57606a; transform: rotate(-2deg); }
+      .tag.a { left: 540px; top: 240px; background: #ec7418; }
+    </style>
+    <header>
+      <img src="${logo}">
+      <div><h1>Read a folder of Markdown, right in Chrome</h1>
+      <p>Open one .md. Get the file tree, outline and full-text search for the whole folder.</p></div>
+    </header>
+    <div class="shot before"><img src="${data(before)}"></div>
+    <div class="shot after"><img src="${data(after)}"></div>
+    <span class="tag b">Chrome on its own</span>
+    <span class="tag a">With Burrow</span>`);
+  await card.locator('.after img').evaluate((img) => img.decode());
+  await card.screenshot({ path: join(images, 'social.png') });
 } finally {
   await context.close();
   await plain.close();
