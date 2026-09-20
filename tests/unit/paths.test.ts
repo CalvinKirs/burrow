@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { baseName, canonicalUrl, dirOf, isMarkdown, isUnder, parentDir, relPath, stripHash } from '../../src/shared/paths';
+import { assertFileUrl, baseName, canonicalUrl, dirOf, isMarkdown, isUnder, parentDir, relPath, stripHash } from '../../src/shared/paths';
 
 describe('paths', () => {
   it('dirOf returns the containing directory with a trailing slash', () => {
@@ -41,6 +41,13 @@ describe('paths', () => {
     expect(canonicalUrl('file:///a/my%20notes/%28x%29.md')).toBe('file:///a/my%20notes/(x).md');
     expect(canonicalUrl('file:///a/%C3%A9t%C3%A9/')).toBe(canonicalUrl('file:///a/été/'));
     expect(canonicalUrl('file:///C:/x/y.md')).toBe('file:///C:/x/y.md');
+  });
+
+  it('assertFileUrl rejects anything that is not a local file url', () => {
+    expect(() => assertFileUrl('file:///a/b.md')).not.toThrow();
+    for (const url of ['https://example.com/a.md', 'http://localhost/a.md', 'chrome://settings', 'file://host/share/a.md', '']) {
+      expect(() => assertFileUrl(url)).toThrow('non-file url');
+    }
   });
 
   it('stripHash removes the fragment', () => {

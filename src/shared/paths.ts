@@ -1,5 +1,10 @@
 const MD_EXT = /\.(md|markdown|mdown|mkd)$/i;
 
+/** Burrow only ever reads local files; anything else is rejected before it reaches fetch(). */
+export function assertFileUrl(url: string): void {
+  if (!url.startsWith('file:///')) throw new Error(`Refusing to read a non-file url: ${url}`);
+}
+
 export function stripHash(url: string): string {
   const i = url.indexOf('#');
   return i === -1 ? url : url.slice(0, i);
