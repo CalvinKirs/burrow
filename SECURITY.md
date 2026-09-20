@@ -15,8 +15,8 @@ Include what you can of the following:
 - what an attacker gains (for example script execution, reading files outside the workspace,
   or data leaving the machine).
 
-Reports are usually acknowledged within a week. Once a fix is released the advisory is
-published and you are credited, unless you prefer otherwise.
+Once a fix is released the advisory is published and you are credited, unless you prefer
+otherwise.
 
 ## Supported versions
 
