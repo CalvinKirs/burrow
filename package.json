@@ -1,0 +1,31 @@
+{
+  "name": "burrow",
+  "version": "0.1.0",
+  "description": "Markdown reader for Chrome with a workspace file tree, outline and full-text search",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "package": "node build.mjs && rm -f burrow.zip && cd dist && zip -qr ../burrow.zip .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "e2e": "playwright test",
+    "screenshots": "node scripts/screenshots.mjs"
+  },
+  "dependencies": {
+    "dompurify": "^3.4.15",
+    "highlight.js": "^11.12.0",
+    "markdown-it": "^15.0.2",
+    "mermaid": "^12.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/chrome": "^0.3.0",
+    "@types/node": "^26.6.2",
+    "jsdom": "^29.1.1",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.1"
+  }
+}

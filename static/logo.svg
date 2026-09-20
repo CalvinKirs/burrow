@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Burrow">
+  <defs>
+    <linearGradient id="soil" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="128">
+      <stop offset="0" stop-color="#F9AE4B"/>
+      <stop offset="1" stop-color="#EC7418"/>
+    </linearGradient>
+    <clipPath id="tile"><rect width="128" height="128" rx="29"/></clipPath>
+  </defs>
+  <g clip-path="url(#tile)">
+    <rect width="128" height="128" fill="url(#soil)"/>
+    <!-- the burrow -->
+    <ellipse cx="64" cy="97" rx="45" ry="15" fill="#552E0E"/>
+    <!-- the rabbit, peeking out -->
+    <g fill="#FFFFFF">
+      <ellipse cx="50" cy="40" rx="9.5" ry="25" transform="rotate(-13 50 40)"/>
+      <ellipse cx="78" cy="40" rx="9.5" ry="25" transform="rotate(13 78 40)"/>
+      <ellipse cx="64" cy="80" rx="29" ry="26"/>
+    </g>
+    <g fill="#FBC9A0">
+      <ellipse cx="50" cy="42" rx="4" ry="16" transform="rotate(-13 50 42)"/>
+      <ellipse cx="78" cy="42" rx="4" ry="16" transform="rotate(13 78 42)"/>
+    </g>
+    <g fill="#3E2209">
+      <ellipse cx="53.5" cy="76" rx="3.4" ry="4"/>
+      <ellipse cx="74.5" cy="76" rx="3.4" ry="4"/>
+    </g>
+    <ellipse cx="64" cy="85" rx="3" ry="2.2" fill="#F08A7A"/>
+    <!-- front lip of the burrow hides the rabbit's chin -->
+    <path d="M0 97 H19 A45 15 0 0 0 109 97 H128 V128 H0 Z" fill="url(#soil)"/>
+    <path d="M19 97 A45 15 0 0 0 109 97" fill="none" stroke="#C85F10" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+</svg>
