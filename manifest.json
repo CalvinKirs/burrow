@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Burrow",
+  "version": "0.1.0",
+  "description": "Markdown workspace reader: browse a local folder of Markdown files with a file tree, outline and full-text search.",
+  "permissions": ["storage", "offscreen"],
+  "host_permissions": ["file:///*"],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": { "default_popup": "popup.html", "default_title": "Burrow" },
+  "options_ui": { "page": "options.html", "open_in_tab": true },
+  "icons": { "16": "icons/16.png", "32": "icons/32.png", "48": "icons/48.png", "128": "icons/128.png" },
+  "content_scripts": [
+    {
+      "matches": ["file:///*"],
+      "include_globs": ["*.md", "*.markdown", "*.mdown", "*.mkd", "*.MD", "*.md#*", "*.markdown#*", "*.mdown#*", "*.mkd#*", "*.MD#*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    { "resources": ["mermaid.js", "chunks/*"], "matches": ["file:///*"] }
+  ]
+}

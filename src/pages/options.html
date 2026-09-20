@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Burrow</title>
+    <link rel="stylesheet" href="./pages.css" />
+  </head>
+  <body>
+    <h1>Burrow <span id="saved">✓</span></h1>
+
+    <label for="theme" data-i18n="theme"></label>
+    <select id="theme">
+      <option value="auto" data-i18n="themeAuto"></option>
+      <option value="light" data-i18n="themeLight"></option>
+      <option value="dark" data-i18n="themeDark"></option>
+    </select>
+
+    <label for="ignore" data-i18n="ignore"></label>
+    <input id="ignore" type="text" />
+    <p class="hint" data-i18n="ignoreHint"></p>
+
+    <label for="maxFiles" data-i18n="maxFiles"></label>
+    <input id="maxFiles" type="number" min="1" max="20000" />
+
+    <label class="inline"><input id="allowHtml" type="checkbox" /> <span data-i18n="allowHtml"></span></label>
+    <p class="hint" data-i18n="allowHtmlHint"></p>
+
+    <h2 data-i18n="savedRoots"></h2>
+    <ul id="roots" class="roots"></ul>
+
+    <script type="module" src="./options.ts"></script>
+  </body>
+</html>

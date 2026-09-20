@@ -1,0 +1,16 @@
+Burrow
+Copyright 2026 Calvin Kirs
+
+The built extension (dist/) bundles third-party software. The main components are:
+
+- markdown-it (MIT)
+- highlight.js (BSD-3-Clause)
+- DOMPurify (used under Apache-2.0)
+- Mermaid (MIT) and its dependencies
+
+Mermaid includes elkjs, which is licensed under the Eclipse Public License 2.0. It is
+distributed here unmodified, as a separate file (dist/chunks/elk-*.js). Its source code is
+available at https://github.com/kieler/elkjs.
+
+The full license text of every bundled package is written to THIRD-PARTY-LICENSES.txt
+by the build.

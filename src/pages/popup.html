@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Burrow</title>
+    <link rel="stylesheet" href="./pages.css" />
+  </head>
+  <body class="popup">
+    <h1>Burrow</h1>
+
+    <div id="ok" class="ok" hidden data-i18n="fileAccessOk"></div>
+    <div id="missing" hidden>
+      <strong class="warn" data-i18n="fileAccessMissing"></strong>
+      <ol>
+        <li data-i18n="step1"></li>
+        <li data-i18n="step2"></li>
+        <li data-i18n="step3"></li>
+      </ol>
+      <button id="details" data-i18n="openDetails"></button>
+    </div>
+
+    <h2 data-i18n="shortcuts"></h2>
+    <div><kbd>Alt</kbd> + <kbd>[</kbd> &nbsp;<span data-i18n="scOutline"></span></div>
+    <div><kbd>Alt</kbd> + <kbd>]</kbd> &nbsp;<span data-i18n="scFiles"></span></div>
+    <div><kbd>Alt</kbd> + <kbd>K</kbd> &nbsp;<span data-i18n="scSearch"></span></div>
+
+    <p><button id="options" data-i18n="options"></button></p>
+    <script type="module" src="./popup.ts"></script>
+  </body>
+</html>
