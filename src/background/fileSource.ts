@@ -1,4 +1,5 @@
 import { parseDirListing } from '../shared/dirListingParser';
+import { assertFileUrl } from '../shared/paths';
 import type { Entry } from '../shared/types';
 
 export interface FileSource {
@@ -49,6 +50,7 @@ export class AutoSource implements FileSource {
   private mode: Mode | null = null;
 
   private async fetchText(url: string): Promise<string> {
+    assertFileUrl(url);
     if (this.mode === null) {
       const stored = await chrome.storage.session.get(MODE_KEY);
       this.mode = (stored[MODE_KEY] as Mode | undefined) ?? null;

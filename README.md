@@ -61,6 +61,27 @@ npm run package      # the same, zipped as burrow.zip
 
 Theme, ignored folder names (dot-folders are always ignored; `node_modules` by default), the search index file limit (default 2000), raw HTML rendering (off by default; output is always sanitised), and the list of saved workspace roots.
 
+## Privacy
+
+Burrow works entirely on your machine.
+
+- **No network access.** The extension makes no network requests and requests no network
+  permissions. Its only host permission is `file:///*`, and the code that reads files rejects any
+  URL that is not a local file.
+- **No data collection.** There is no telemetry, analytics or account. Nothing about your files,
+  searches or usage leaves the browser.
+- **What is stored.** Your settings, sidebar layout, expanded folders and saved workspace roots
+  (folder paths) are kept in `chrome.storage.local` on this device; they are not synced. The search
+  index lives in memory and is discarded when the background worker stops.
+- **Permissions.** `storage` for the settings above, `offscreen` for a fallback file reader, and
+  access to file URLs, which you grant explicitly in `chrome://extensions`.
+
+One caveat that applies to any Markdown viewer: if a document embeds remote content, such as
+`![](https://example.com/pixel.png)`, Chrome loads it when the document is rendered, exactly as it
+would for a web page. Burrow does not add, rewrite or proxy such requests.
+
+To report a vulnerability, see [SECURITY.md](SECURITY.md).
+
 ## How it works
 
 Chrome renders `file:///some/dir/` as a directory listing page. The background service worker fetches that page and parses it to list a folder, so no folder picker or native helper is needed. The content script only handles the UI; directory reads, root resolution and the search index live in the service worker (`src/background`). If a Chrome version refuses `file://` fetches from the worker, reads fall back to an offscreen document automatically.

@@ -1,6 +1,9 @@
+import { assertFileUrl } from '../shared/paths';
+
 // Fallback reader for file:// urls, used when the service worker cannot fetch them itself.
 function xhrText(url: string): Promise<string> {
   return new Promise((resolve, reject) => {
+    assertFileUrl(url);
     const xhr = new XMLHttpRequest();
     xhr.open('GET', url);
     xhr.onload = () => resolve(xhr.responseText);
