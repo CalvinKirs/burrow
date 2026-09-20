@@ -11,10 +11,14 @@ const allowHtml = $<HTMLInputElement>('allowHtml');
 const roots = $<HTMLUListElement>('roots');
 const saved = $<HTMLSpanElement>('saved');
 
+let savedTimer = 0;
+
 async function save(patch: Partial<Settings>) {
   await saveSettings(patch);
   saved.classList.add('show');
-  setTimeout(() => saved.classList.remove('show'), 900);
+  // Restart the countdown so an earlier save cannot hide the indicator of a later one.
+  clearTimeout(savedTimer);
+  savedTimer = window.setTimeout(() => saved.classList.remove('show'), 900);
 }
 
 function renderRoots(list: string[]) {

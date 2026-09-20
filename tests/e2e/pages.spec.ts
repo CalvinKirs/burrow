@@ -8,7 +8,10 @@ test('options are saved and applied to the reader', async ({ context, worker }) 
   await options.locator('#theme').selectOption('dark');
   await options.locator('#ignore').fill('node_modules, notes');
   await options.locator('#ignore').blur();
-  await expect(options.locator('#saved')).toHaveClass(/show/);
+  // Wait on the stored value, not on the "saved" indicator, which is only visible for a moment.
+  await expect
+    .poll(() => worker.evaluate(async () => (await chrome.storage.local.get('settings')).settings))
+    .toMatchObject({ theme: 'dark', ignore: ['node_modules', 'notes'] });
 
   const page = await context.newPage();
   await page.emulateMedia({ colorScheme: 'light' });
