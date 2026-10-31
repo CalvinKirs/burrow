@@ -1,6 +1,6 @@
 {
   "name": "burrow",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Markdown reader for Chrome with a workspace file tree, outline and full-text search",
   "private": true,
   "license": "Apache-2.0",

@@ -1,6 +1,7 @@
 import { loadSettings, saveSettings } from '../shared/settings';
 import type { Request, ResponseMap } from '../shared/types';
 import { AutoSource } from './fileSource';
+import { clearHistory, loadHistory, recordVisit, removeVisit } from './history';
 import { SearchIndex } from './searchIndex';
 import { addRoot, filterAndSort, removeRootsFor, resolveRoot } from './workspace';
 
@@ -26,6 +27,17 @@ function getIndex(root: string, rebuild: boolean): Promise<SearchIndex> {
 
 async function handle(req: Request): Promise<ResponseMap[Request['type']]> {
   switch (req.type) {
+    case 'getHistory':
+      return { entries: await loadHistory() };
+    case 'recordVisit':
+      await recordVisit(req.fileUrl, req.title);
+      return { ok: true };
+    case 'removeVisit':
+      await removeVisit(req.fileUrl);
+      return { ok: true };
+    case 'clearHistory':
+      await clearHistory();
+      return { ok: true };
     case 'resolveRoot': {
       const { savedRoots } = await loadSettings();
       return { root: resolveRoot(req.fileUrl, savedRoots) };

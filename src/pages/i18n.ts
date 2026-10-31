@@ -22,6 +22,14 @@ export const t = {
   scFiles: 'Toggle workspace',
   scSearch: 'Search workspace',
   options: 'Options',
+  history: 'Reading history',
+  searchHistory: 'Search by file name, title or path',
+  clearHistory: 'Clear history',
+  noHistory: 'No history yet. Markdown files you open from now on will appear here (up to 200).',
+  noHistoryMatches: 'No matching files.',
+  historyError: 'Could not load reading history. Reopen the popup to try again.',
+  historyActionError: 'Could not update reading history. Please try again.',
+  openHistoryError: 'Could not open this file. Please try again.',
 };
 
 

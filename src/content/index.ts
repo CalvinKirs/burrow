@@ -1,4 +1,5 @@
 import { baseName } from '../shared/paths';
+import { send } from '../shared/messages';
 import { loadSettings } from '../shared/settings';
 import { mountExplorer } from './explorer';
 import { revealHit } from './highlightHit';
@@ -33,6 +34,8 @@ async function main() {
   const layout = createLayout(source, settings);
   layout.article.innerHTML = html;
   document.title = headings.find((x) => x.level === 1)?.text ?? baseName(location.href);
+  void send({ type: 'recordVisit', fileUrl: location.href, title: document.title })
+    .catch((err) => console.warn('[burrow] history', err));
   if (source.length > LARGE_FILE_CHARS) layout.notice(t.largeFile);
 
   mountOutline(layout.leftBody, layout.article, headings);

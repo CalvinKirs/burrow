@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Burrow",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Markdown workspace reader: browse a local folder of Markdown files with a file tree, outline and full-text search.",
   "permissions": ["storage", "offscreen"],
   "host_permissions": ["file:///*"],

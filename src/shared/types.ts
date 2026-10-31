@@ -20,6 +20,12 @@ export interface Heading {
   id: string;
 }
 
+export interface HistoryEntry {
+  url: string;
+  title: string;
+  visitedAt: number;
+}
+
 export type Theme = 'auto' | 'light' | 'dark';
 
 export interface Settings {
@@ -43,6 +49,10 @@ export interface SearchResult {
 }
 
 export type Request =
+  | { type: 'getHistory' }
+  | { type: 'recordVisit'; fileUrl: string; title: string }
+  | { type: 'removeVisit'; fileUrl: string }
+  | { type: 'clearHistory' }
   | { type: 'resolveRoot'; fileUrl: string }
   | { type: 'listChildren'; dirUrl: string }
   | { type: 'setRoot'; root: string }
@@ -50,6 +60,10 @@ export type Request =
   | { type: 'search'; root: string; q: string; rebuild?: boolean };
 
 export interface ResponseMap {
+  getHistory: { entries: HistoryEntry[] };
+  recordVisit: { ok: true };
+  removeVisit: { ok: true };
+  clearHistory: { ok: true };
   resolveRoot: { root: string };
   listChildren: { entries: Entry[] };
   setRoot: { ok: true };

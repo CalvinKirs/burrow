@@ -19,12 +19,26 @@
       <button id="details" data-i18n="openDetails"></button>
     </div>
 
-    <h2 data-i18n="shortcuts"></h2>
-    <div><kbd>Alt</kbd> + <kbd>[</kbd> &nbsp;<span data-i18n="scOutline"></span></div>
-    <div><kbd>Alt</kbd> + <kbd>]</kbd> &nbsp;<span data-i18n="scFiles"></span></div>
-    <div><kbd>Alt</kbd> + <kbd>K</kbd> &nbsp;<span data-i18n="scSearch"></span></div>
+    <section aria-labelledby="history-title">
+      <div class="history-heading">
+        <h2 id="history-title" data-i18n="history"></h2>
+        <button id="clear-history" data-i18n="clearHistory" disabled></button>
+      </div>
+      <label for="history-search" class="hint" data-i18n="searchHistory"></label>
+      <input id="history-search" type="search" autocomplete="off" />
+      <p id="history-status" class="hint" role="status"></p>
+      <ul id="history" class="history"></ul>
+    </section>
 
-    <p><button id="options" data-i18n="options"></button></p>
+    <div class="popup-actions">
+      <details>
+        <summary data-i18n="shortcuts"></summary>
+        <div><kbd>Alt</kbd> + <kbd>[</kbd> &nbsp;<span data-i18n="scOutline"></span></div>
+        <div><kbd>Alt</kbd> + <kbd>]</kbd> &nbsp;<span data-i18n="scFiles"></span></div>
+        <div><kbd>Alt</kbd> + <kbd>K</kbd> &nbsp;<span data-i18n="scSearch"></span></div>
+      </details>
+      <button id="options" data-i18n="options"></button>
+    </div>
     <script type="module" src="./popup.ts"></script>
   </body>
 </html>

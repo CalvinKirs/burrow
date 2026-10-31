@@ -26,6 +26,7 @@ Notes, docs and ADRs usually live as a *folder* of Markdown files, but Markdown 
 - **Outline sidebar** (left) – the headings of the current file; follows your scroll position, click to jump.
 - **Out of the way when you read** – hide either sidebar (`Alt`+`[`, `Alt`+`]`), drag to resize; the layout is remembered.
 - **Rendering** – GFM tables and task lists, syntax highlighting, Mermaid diagrams, light / dark / system theme, raw view. Output is always sanitised.
+- **Reading history** – click the Burrow toolbar icon to find and reopen Markdown files you have read. Search the latest 200 files by name, title or path; remove individual entries or clear the list. History starts when this version is installed.
 
 ![Burrow with the outline on the left and the workspace tree on the right](docs/images/overview.png)
 
@@ -71,7 +72,9 @@ Burrow works entirely on your machine.
 - **No data collection.** There is no telemetry, analytics or account. Nothing about your files,
   searches or usage leaves the browser.
 - **What is stored.** Your settings, sidebar layout, expanded folders and saved workspace roots
-  (folder paths) are kept in `chrome.storage.local` on this device; they are not synced. The search
+  (folder paths), plus the latest 200 opened Markdown files (paths, titles and last-opened times),
+  are kept in `chrome.storage.local` on this device; they are not synced. Reading history can be
+  removed or cleared from the toolbar popup. The search
   index lives in memory and is discarded when the background worker stops.
 - **Permissions.** `storage` for the settings above, `offscreen` for a fallback file reader, and
   access to file URLs, which you grant explicitly in `chrome://extensions`.
